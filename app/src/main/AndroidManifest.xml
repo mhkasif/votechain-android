@@ -17,6 +17,11 @@
         tools:replace="android:allowBackup">
 
         <activity android:name=".CastVoteActivity">
+
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -24,9 +29,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:screenOrientation="portrait"/>
         <activity
             android:name=".OnyxSetupActivity"
             android:screenOrientation="portrait">
