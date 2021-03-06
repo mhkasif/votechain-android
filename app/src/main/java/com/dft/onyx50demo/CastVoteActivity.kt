@@ -1,6 +1,7 @@
 package com.dft.onyx50demo
 
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -57,6 +58,8 @@ class CastVoteActivity : AppCompatActivity() {
                             dialog.hide()
                             if (response.body() != null) {
                                 Toast.makeText(baseContext, response.body()!!.message, Toast.LENGTH_SHORT).show()
+
+                                startActivity(Intent(this@CastVoteActivity, LoginActivity::class.java))
                             }
                         }
 

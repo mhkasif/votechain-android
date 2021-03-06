@@ -3,6 +3,7 @@ package com.dft.onyx50demo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -50,6 +51,7 @@ public class LoginActivity extends Activity {
                         new Callback<ValidationResponse>() {
                             @Override
                             public void onResponse(Call<ValidationResponse> call, Response<ValidationResponse> response) {
+                                Log.d("data",response.body().getData());
                                 if(response.body().getData() != null && response.body().getData().equals("validated")){
                                     authstore.setVoterId(voterId);
                                     finish();

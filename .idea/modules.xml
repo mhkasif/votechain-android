@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/onyx-5.0-demo-master.iml" filepath="$PROJECT_DIR$/.idea/modules/onyx-5.0-demo-master.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/onyx-5.0-demo-master.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/onyx-5.0-demo-master.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/VoteCastBlockchain.iml" filepath="$PROJECT_DIR$/.idea/modules/VoteCastBlockchain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/VoteCastBlockchain.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/VoteCastBlockchain.app.iml" />
     </modules>
   </component>
 </project>

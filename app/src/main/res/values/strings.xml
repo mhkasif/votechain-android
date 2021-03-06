@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Election System</string>
+    <string name="app_name">Vote Chain</string>
     <string name="onyx_license" translatable="false">3969-9138-6246-1-2</string>
     <string name="enroll_title" translatable="false">Enrollment</string>
     <string name="enroll_question" translatable="false">Would you like to enroll this fingerprint?</string>

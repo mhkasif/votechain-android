@@ -61,7 +61,10 @@ class SelectHandActivity : Activity() {
 
         binding.btnNext.setOnClickListener {
             SharedPreferencesAuthStore(this).handFingerString = "$handString$fingerString"
-            startActivity(Intent(this, OnyxSetupActivity::class.java))
+            val i = Intent(applicationContext, OnyxSetupActivity::class.java)
+            i.putExtra("finger","$handString$fingerString")
+            startActivity(i)
+         //   startActivity(Intent(this, OnyxSetupActivity::class.java))
 
         }
     }
