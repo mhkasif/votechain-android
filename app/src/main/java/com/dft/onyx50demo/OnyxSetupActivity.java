@@ -20,7 +20,6 @@ import com.dft.onyxcamera.config.OnyxError;
 import com.dft.onyxcamera.config.OnyxResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.security.ProviderInstaller;
-import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import static com.dft.onyx50demo.ValuesUtil.getComputeNfiqMetrics;
 import static com.dft.onyx50demo.ValuesUtil.getCropFactor;
@@ -37,9 +36,9 @@ import static com.dft.onyx50demo.ValuesUtil.getReturnWSQ;
 import static com.dft.onyx50demo.ValuesUtil.getShowLoadingSpinner;
 import static com.dft.onyx50demo.ValuesUtil.getTargetPixelsPerInch;
 import static com.dft.onyx50demo.ValuesUtil.getThresholdImage;
+import static com.dft.onyx50demo.ValuesUtil.getUseFlash;
 import static com.dft.onyx50demo.ValuesUtil.getUseManualCapture;
 import static com.dft.onyx50demo.ValuesUtil.getUseOnyxLive;
-import static com.dft.onyx50demo.ValuesUtil.getUseRightHandLayout;
 
 public class OnyxSetupActivity extends Activity implements ProviderInstaller.ProviderInstallListener {
     private static final String TAG = OnyxSetupActivity.class.getName();
@@ -51,7 +50,7 @@ public class OnyxSetupActivity extends Activity implements ProviderInstaller.Pro
     private AlertDialog alertDialog;
     private TextView livenessResultTextView;
     private TextView nfiqScoreTextView;
-    private SwitchMaterial flashBtn;
+
     private OnyxConfiguration.SuccessCallback successCallback;
     private OnyxConfiguration.ErrorCallback errorCallback;
     private OnyxConfiguration.OnyxCallback onyxCallback;
@@ -72,14 +71,13 @@ public class OnyxSetupActivity extends Activity implements ProviderInstaller.Pro
             public void onSuccess(OnyxResult onyxResult) {
                 application.setOnyxResult(onyxResult);
                 finishActivityForRunningOnyx();
-
             }
         };
 
         errorCallback = new OnyxConfiguration.ErrorCallback() {
             @Override
             public void onError(OnyxError onyxError) {
-                Log.e("Vote chain", onyxError.getErrorMessage());
+                Log.e("OnyxError", onyxError.getErrorMessage());
                 application.setOnyxError(onyxError);
                 showAlertDialog(onyxError);
                 finishActivityForRunningOnyx();
@@ -94,8 +92,6 @@ public class OnyxSetupActivity extends Activity implements ProviderInstaller.Pro
                     @Override
                     public void run() {
                         startOnyxButton.setEnabled(true);
-                        
-                        startActivityForResult(new Intent(activity, OnyxActivity.class), ONYX_REQUEST_CODE);
                     }
                 });
             }
@@ -122,15 +118,13 @@ public class OnyxSetupActivity extends Activity implements ProviderInstaller.Pro
                 .setShowLoadingSpinner(getShowLoadingSpinner(this))
                 .setUseOnyxLive(getUseOnyxLive(this))
                 .setComputeNfiqMetrics(getComputeNfiqMetrics(this))
-                .setUseFlash(flashBtn.isChecked())
+                .setUseFlash(getUseFlash(this))
                 .setImageRotation(getImageRotation(this))
-                .setReticleOrientation(getReticleOrientation(this))
                 .setCropSize(getCropSizeWidth(this), getCropSizeHeight(this))
                 .setCropFactor(getCropFactor(this))
                 .setTargetPixelsPerInch(getTargetPixelsPerInch(this))
-                .setUseFourFingerReticle(true, false)
-                .setUseRightHandLayout(getUseRightHandLayout(this))
-                .setLayoutPreference(OnyxConfiguration.LayoutPreference.FULL)
+                .setReticleOrientation(getReticleOrientation(this))
+                .setCaptureDistanceRange(19.5f, 29.5f)
                 .setSuccessCallback(successCallback)
                 .setErrorCallback(errorCallback)
                 .setOnyxCallback(onyxCallback);
@@ -166,17 +160,17 @@ public class OnyxSetupActivity extends Activity implements ProviderInstaller.Pro
 
     private void displayResults(OnyxResult onyxResult) {
         startActivity(new Intent(this, OnyxImageryActivity.class));
-        if (onyxResult.getMetrics() != null) {
-            livenessResultTextView.setText(Double.toString(onyxResult.getMetrics().getLivenessConfidence()));
-            //nfiqScoreTextView.setText(Integer.toString(onyxResult.getMetrics().getNfiqMetrics().getNfiqScore()));
-        }
+//        if (onyxResult.getMetrics() != null) {
+//            livenessResultTextView.setText(Double.toString(onyxResult.getMetrics().getLivenessConfidence()));
+//            nfiqScoreTextView.setText(Integer.toString(onyxResult.getMetrics().getNfiqMetrics().getNfiqScore()));
+//        }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Log.v(TAG, "Permission: " + permissions[0] + " was " + grantResults[0]);
+        if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
+            Log.v(TAG,"Permission: "+permissions[0]+ " was " + grantResults[0]);
         }
     }
 
@@ -186,24 +180,22 @@ public class OnyxSetupActivity extends Activity implements ProviderInstaller.Pro
         fingerprintView = new ImageView(this);
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         addContentView(fingerprintView, layoutParams);
-        livenessResultTextView = findViewById(R.id.livenessResult);
-        flashBtn=findViewById(R.id.flashBtn);
-        nfiqScoreTextView = findViewById(R.id.nfiqScore);
         startOnyxButton = findViewById(R.id.start_onyx);
         startOnyxButton.setEnabled(true);
         startOnyxButton.bringToFront();
         startOnyxButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                MainApplication.setOnyxResult(null);
                 setupOnyx(activity);
+                MainApplication.setOnyxResult(null);
+                startActivityForResult(new Intent(activity, OnyxActivity.class), ONYX_REQUEST_CODE);
             }
         });
         Button refreshConfigButton = findViewById(R.id.refresh_config);
         refreshConfigButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                setupOnyx(activity);
+                setupOnyx(activity);
                 startOnyxButton.setEnabled(false);
             }
         });
@@ -212,13 +204,12 @@ public class OnyxSetupActivity extends Activity implements ProviderInstaller.Pro
     /**
      * This displays an AlertDialog upon receiving an OnyxError, please handle appropriately for
      * your application
-     *
      * @param onyxError
      */
     private void showAlertDialog(OnyxError onyxError) {
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
         alertDialogBuilder.setCancelable(true);
-        alertDialogBuilder.setTitle("Vote chain");
+        alertDialogBuilder.setTitle("Onyx Error");
         alertDialogBuilder.setMessage(onyxError.getErrorMessage());
         alertDialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
@@ -255,7 +246,7 @@ public class OnyxSetupActivity extends Activity implements ProviderInstaller.Pro
      */
     @Override
     public void onProviderInstalled() {
-        Log.i("Votechain Activity", "Provider is up-to-date, app can make secure network calls.");
+        Log.i("OnyxSetupActivity","Provider is up-to-date, app can make secure network calls.");
     }
 
     /**
@@ -299,6 +290,6 @@ public class OnyxSetupActivity extends Activity implements ProviderInstaller.Pro
         // This is reached if the provider cannot be updated for some reason.
         // App should consider all HTTP communication to be vulnerable, and take
         // appropriate action.
-        Log.i("Votechain SetupActivity", "ProviderInstaller not available, device cannot make secure network calls.");
+        Log.i("OnyxSetupActivity","ProviderInstaller not available, device cannot make secure network calls.");
     }
 }

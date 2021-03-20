@@ -2,14 +2,8 @@ package com.dft.onyx50demo;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.dft.onyxcamera.config.Onyx;
-
-import static com.dft.onyx50demo.ValuesUtil.getUseManualCapture;
 
 /**
  * Example activity for running Onyx that has been previously configured.

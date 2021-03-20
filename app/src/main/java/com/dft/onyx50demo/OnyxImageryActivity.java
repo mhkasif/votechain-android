@@ -169,7 +169,7 @@ public class OnyxImageryActivity extends Activity {
         fileUtil.checkExternalMedia(this);
         if (onyxResult.getWsqData() != null && !onyxResult.getWsqData().isEmpty() && fileUtil.getWriteExternalStoragePermission(this)) {
             for (int i = 0; i < onyxResult.getWsqData().size(); i++) {
-                fileUtil.writeToSDFile(this, onyxResult.getWsqData().get(i), "wsq" + i);
+                fileUtil.writePNGImage(this, onyxResult.getProcessedFingerprintImages().get(i), "wsq" + i);
                 break;
             }
         }
@@ -177,12 +177,12 @@ public class OnyxImageryActivity extends Activity {
         fileUtil.checkExternalMedia(this);
         if (onyxResult.getProcessedFingerprintImages() != null && !onyxResult.getProcessedFingerprintImages().isEmpty() && fileUtil.getWriteExternalStoragePermission(this)) {
             for (int i = 0; i < onyxResult.getProcessedFingerprintImages().size(); i++) {
-                fileUtil.writePNGToSDFile(this, onyxResult.getProcessedFingerprintImages().get(i), "png" + i);
+                fileUtil.writePNGImage(this, onyxResult.getProcessedFingerprintImages().get(i), "png" + i);
                 break;
             }
         }
 
-        Button finishButton = findViewById(R.id.finishButton1);
+//        Button finishButton = findViewById(R.id.v);
 
         Button verify = findViewById(R.id.finishButton);
         int finalIndex = index;
@@ -297,13 +297,13 @@ public class OnyxImageryActivity extends Activity {
         });
      //   finishButton.setText("Verify");
 
-        finishButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MainApplication.setOnyxResult(null);
-                startActivity(new Intent(activity, OnyxSetupActivity.class));
-            }
-        });
+//        finishButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                MainApplication.setOnyxResult(null);
+//                startActivity(new Intent(activity, OnyxSetupActivity.class));
+//            }
+//        });
     }
 //    private class uploadFileToServerTask extends AsyncTask<String, String, String> {
 //
