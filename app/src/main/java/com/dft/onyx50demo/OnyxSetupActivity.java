@@ -36,9 +36,10 @@ import static com.dft.onyx50demo.ValuesUtil.getReturnWSQ;
 import static com.dft.onyx50demo.ValuesUtil.getShowLoadingSpinner;
 import static com.dft.onyx50demo.ValuesUtil.getTargetPixelsPerInch;
 import static com.dft.onyx50demo.ValuesUtil.getThresholdImage;
-import static com.dft.onyx50demo.ValuesUtil.getUseFlash;
+//import static com.dft.onyx50demo.ValuesUtil.getUseFlash;
 import static com.dft.onyx50demo.ValuesUtil.getUseManualCapture;
 import static com.dft.onyx50demo.ValuesUtil.getUseOnyxLive;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 
 public class OnyxSetupActivity extends Activity implements ProviderInstaller.ProviderInstallListener {
     private static final String TAG = OnyxSetupActivity.class.getName();
@@ -50,7 +51,7 @@ public class OnyxSetupActivity extends Activity implements ProviderInstaller.Pro
     private AlertDialog alertDialog;
     private TextView livenessResultTextView;
     private TextView nfiqScoreTextView;
-
+    private SwitchMaterial flashBtn;
     private OnyxConfiguration.SuccessCallback successCallback;
     private OnyxConfiguration.ErrorCallback errorCallback;
     private OnyxConfiguration.OnyxCallback onyxCallback;
@@ -118,7 +119,7 @@ public class OnyxSetupActivity extends Activity implements ProviderInstaller.Pro
                 .setShowLoadingSpinner(getShowLoadingSpinner(this))
                 .setUseOnyxLive(getUseOnyxLive(this))
                 .setComputeNfiqMetrics(getComputeNfiqMetrics(this))
-                .setUseFlash(getUseFlash(this))
+                .setUseFlash(flashBtn.isChecked())
                 .setImageRotation(getImageRotation(this))
                 .setCropSize(getCropSizeWidth(this), getCropSizeHeight(this))
                 .setCropFactor(getCropFactor(this))
@@ -183,6 +184,8 @@ public class OnyxSetupActivity extends Activity implements ProviderInstaller.Pro
         startOnyxButton = findViewById(R.id.start_onyx);
         startOnyxButton.setEnabled(true);
         startOnyxButton.bringToFront();
+        flashBtn=findViewById(R.id.flashBtn);
+
         startOnyxButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
