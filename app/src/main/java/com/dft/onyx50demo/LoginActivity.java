@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -51,16 +50,22 @@ public class LoginActivity extends Activity {
                         new Callback<ValidationResponse>() {
                             @Override
                             public void onResponse(Call<ValidationResponse> call, Response<ValidationResponse> response) {
-                                Log.d("data",response.body().getData());
-                                if(response.body().getData() != null && response.body().getData().equals("validated")){
-                                    authstore.setVoterId(voterId);
-                                    finish();
-                                    startActivity(new Intent(LoginActivity.this, SelectHandActivity.class));
-                                }else{
-                                    Toast.makeText(LoginActivity.this,response.body().getError(),Toast.LENGTH_SHORT).show();
+                                try {
+                                    Log.d("data", response.body().getData());
+                                    if (response.body().getData() != null && response.body().getData().equals("validated")) {
+                                        authstore.setVoterId(voterId);
+                                        finish();
+                                        startActivity(new Intent(LoginActivity.this, SelectHandActivity.class));
+                                    } else {
+                                        Toast.makeText(LoginActivity.this, response.body().getError(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }catch (Exception e){
+                                    Log.d("exception",e.toString());
+
+
+                                    enableDisableFields(false);
                                 }
-                                enableDisableFields(false);
-                            }
+                                }
 
                             @Override
                             public void onFailure(Call<ValidationResponse> call, Throwable t) {

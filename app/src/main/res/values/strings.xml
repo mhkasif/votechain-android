@@ -6,4 +6,7 @@
     <string name="too_close_text">Move fingers back</string>
     <string name="too_far_text">Move fingers closer</string>
     <string name="capture_text">Hold fingers steady</string>
+    <string name="select_hand">Select Hand</string>
+    <string name="finger_no">Finger No</string>
+
 </resources>

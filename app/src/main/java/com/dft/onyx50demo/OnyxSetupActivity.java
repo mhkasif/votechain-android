@@ -12,9 +12,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.dft.onyx50demo.matching.SharedPreferencesAuthStore;
 import com.dft.onyxcamera.config.Onyx;
 import com.dft.onyxcamera.config.OnyxConfiguration;
 import com.dft.onyxcamera.config.OnyxConfigurationBuilder;
@@ -39,7 +37,6 @@ import static com.dft.onyx50demo.ValuesUtil.getReturnWSQ;
 import static com.dft.onyx50demo.ValuesUtil.getShowLoadingSpinner;
 import static com.dft.onyx50demo.ValuesUtil.getTargetPixelsPerInch;
 import static com.dft.onyx50demo.ValuesUtil.getThresholdImage;
-import static com.dft.onyx50demo.ValuesUtil.getUseFlash;
 import static com.dft.onyx50demo.ValuesUtil.getUseManualCapture;
 import static com.dft.onyx50demo.ValuesUtil.getUseOnyxLive;
 import static com.dft.onyx50demo.ValuesUtil.getUseRightHandLayout;
@@ -82,7 +79,7 @@ public class OnyxSetupActivity extends Activity implements ProviderInstaller.Pro
         errorCallback = new OnyxConfiguration.ErrorCallback() {
             @Override
             public void onError(OnyxError onyxError) {
-                Log.e("OnyxError", onyxError.getErrorMessage());
+                Log.e("Vote chain", onyxError.getErrorMessage());
                 application.setOnyxError(onyxError);
                 showAlertDialog(onyxError);
                 finishActivityForRunningOnyx();
@@ -221,7 +218,7 @@ public class OnyxSetupActivity extends Activity implements ProviderInstaller.Pro
     private void showAlertDialog(OnyxError onyxError) {
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
         alertDialogBuilder.setCancelable(true);
-        alertDialogBuilder.setTitle("Onyx Error");
+        alertDialogBuilder.setTitle("Vote chain");
         alertDialogBuilder.setMessage(onyxError.getErrorMessage());
         alertDialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
@@ -258,7 +255,7 @@ public class OnyxSetupActivity extends Activity implements ProviderInstaller.Pro
      */
     @Override
     public void onProviderInstalled() {
-        Log.i("OnyxSetupActivity", "Provider is up-to-date, app can make secure network calls.");
+        Log.i("Votechain Activity", "Provider is up-to-date, app can make secure network calls.");
     }
 
     /**
@@ -302,6 +299,6 @@ public class OnyxSetupActivity extends Activity implements ProviderInstaller.Pro
         // This is reached if the provider cannot be updated for some reason.
         // App should consider all HTTP communication to be vulnerable, and take
         // appropriate action.
-        Log.i("OnyxSetupActivity", "ProviderInstaller not available, device cannot make secure network calls.");
+        Log.i("Votechain SetupActivity", "ProviderInstaller not available, device cannot make secure network calls.");
     }
 }

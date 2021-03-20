@@ -6,6 +6,7 @@ import com.dft.onyx50demo.response.ValidationRequest
 import com.dft.onyx50demo.response.ValidationResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Multipart
@@ -25,7 +26,7 @@ interface OnyxApi {
             @Part("voter_id") voter_id:RequestBody,
             @Part("index") index:RequestBody,
             @Part data:MultipartBody.Part
-    )
+    ):  Call<ResponseBody>
 
     @POST("caste-vote")
     fun castVote(
