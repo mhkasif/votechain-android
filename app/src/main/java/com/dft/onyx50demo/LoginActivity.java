@@ -62,9 +62,11 @@ public class LoginActivity extends Activity {
                                     }
                                 }catch (Exception e){
                                     Log.d("exception",e.toString());
-                                    authstore.setVoterId("8881212");
-                                    finish();
-                                    startActivity(new Intent(LoginActivity.this, SelectHandActivity.class));
+                                    Toast.makeText(LoginActivity.this, response.body().getError(), Toast.LENGTH_SHORT).show();
+
+//                                    authstore.setVoterId("8881212");
+//                                    finish();
+//                                    startActivity(new Intent(LoginActivity.this, SelectHandActivity.class));
 
                                     enableDisableFields(false);
                                 }

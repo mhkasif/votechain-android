@@ -805,6 +805,8 @@ public class OnyxImageryActivity extends Activity {
                         fo.close();
                     } catch (IOException e) {
                         e.printStackTrace();
+                        Toast.makeText(OnyxImageryActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+
                     }
 
                     OnyxApi onyxApi;
