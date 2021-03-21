@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/VoteCastBlockchain.iml" filepath="$PROJECT_DIR$/.idea/modules/VoteCastBlockchain.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/VoteCastBlockchain.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/VoteCastBlockchain.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/votecasteandroid.iml" filepath="$PROJECT_DIR$/.idea/modules/votecasteandroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/votecasteandroid.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/votecasteandroid.app.iml" />
     </modules>
   </component>
 </project>

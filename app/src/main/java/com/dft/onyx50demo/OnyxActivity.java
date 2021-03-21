@@ -2,6 +2,7 @@ package com.dft.onyx50demo;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.dft.onyxcamera.config.Onyx;
 
@@ -28,8 +29,12 @@ public class OnyxActivity extends Activity {
         configuredOnyx = MainApplication.getConfiguredOnyx();
 
         // Creates Onyx in this activity
-        configuredOnyx.create(this);
+        try {
+            configuredOnyx.create(this);
+        }catch (Exception e){
+            Log.e("Error","Unable to start Onnx Activity");
 
+        }
         // Make Onyx start the capture process
         // Important: configuredOnyx.capture() must occur after configuredOnyx.create() has been called
         if (!configuredOnyx.getOnyxConfig().isManualCapture()) {

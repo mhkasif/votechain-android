@@ -824,6 +824,8 @@ public class OnyxImageryActivity extends Activity {
 // MultipartBody.Part is used to send also the actual file name
                     MultipartBody.Part body =
                             MultipartBody.Part.createFormData("data", file.getName(), reqFile);
+                    Log.d("voter_id",voter_id);
+                    Log.d("index",index);
                     RequestBody description =
                             RequestBody.create(
                                     MultipartBody.FORM, voter_id);
@@ -877,6 +879,12 @@ public class OnyxImageryActivity extends Activity {
                                 }
                             } catch (JSONException | IOException e) {
                                 e.printStackTrace();
+
+                                Toast.makeText(getApplication(),obj.toString() , Toast.LENGTH_SHORT).show();
+
+                                MainApplication.setOnyxResult(null);
+
+                                startActivity(new Intent(activity, OnyxSetupActivity.class));
                             }
 
                         }
