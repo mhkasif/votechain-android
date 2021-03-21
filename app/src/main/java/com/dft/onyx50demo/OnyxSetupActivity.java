@@ -182,7 +182,7 @@ public class OnyxSetupActivity extends Activity implements ProviderInstaller.Pro
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         addContentView(fingerprintView, layoutParams);
         startOnyxButton = findViewById(R.id.start_onyx);
-        startOnyxButton.setEnabled(true);
+        startOnyxButton.setEnabled(false);
         startOnyxButton.bringToFront();
         flashBtn=findViewById(R.id.flashBtn);
 
