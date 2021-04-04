@@ -98,7 +98,7 @@ public class ValuesUtil {
         if (((CheckBox) a.findViewById(R.id.cropFactor)).isChecked()) {
             return Float.valueOf(((EditText) a.findViewById(R.id.cropFactorEditText)).getText().toString());
         } else {
-            return 1.0f;
+            return 1.5f;
         }
     }
 

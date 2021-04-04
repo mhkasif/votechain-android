@@ -600,6 +600,7 @@
 package com.dft.onyx50demo;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Environment;
@@ -788,6 +789,12 @@ public class OnyxImageryActivity extends Activity {
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ProgressDialog progress = new ProgressDialog(activity);
+                progress.setTitle("Loading");
+                progress.setMessage("Wait while loading...");
+                progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+                progress.show();
+// To dismiss the dialog
 
                 Log.d("verifying",finalIndex+" ");
                 try {
@@ -865,14 +872,14 @@ public class OnyxImageryActivity extends Activity {
                                 Log.v("response",response.body().string());
                                 Log.v("object",obj.toString());
                                 if(obj.getString("data").equals("matched")){
-
+                                    progress.dismiss();
                                     Toast.makeText(getApplication(),obj.getString("data") , Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(activity, CastVoteActivity.class));
 
                                 }
 
                                 else {
-
+                                    progress.dismiss();
                                     Toast.makeText(getApplication(),obj.getString("data") , Toast.LENGTH_SHORT).show();
 
                                     MainApplication.setOnyxResult(null);
