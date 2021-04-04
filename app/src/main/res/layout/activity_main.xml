@@ -413,7 +413,7 @@
 
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/flashBtn"
-            android:layout_width="380dp"
+            android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center|center_horizontal|center_vertical"
             android:text="Flash"
@@ -422,7 +422,7 @@
 
         <Button
             android:id="@+id/refresh_config"
-            android:layout_width="380dp"
+            android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Refresh Configuration"
@@ -433,7 +433,7 @@
 
         <Button
             android:id="@+id/start_onyx"
-            android:layout_width="380dp"
+            android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Take Picture"
