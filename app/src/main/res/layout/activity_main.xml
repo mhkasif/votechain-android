@@ -379,13 +379,17 @@
 <!--        </LinearLayout>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="center|center_horizontal|center_vertical"
+        android:gravity="center_horizontal|center_vertical"
         android:orientation="vertical">
+
         <LinearLayout
             android:id="@+id/button_layout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -395,42 +399,48 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <Button
-                android:id="@+id/refresh_config"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Refresh Configuration"
-                android:textAlignment="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="Refresh configuration" />
-
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_gravity="center"
+            android:gravity="center"
             android:orientation="vertical">
-
-            <Button
-                android:id="@+id/start_onyx"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:text="Take Picture"
-                android:textAlignment="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="Take Picture" />
 
         </LinearLayout>
 
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/flashBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="380dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center|center_horizontal|center_vertical"
             android:text="Flash"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            tools:layout_gravity="center" />
+
+        <Button
+            android:id="@+id/refresh_config"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Refresh Configuration"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_gravity="center"
+            tools:text="Refresh configuration" />
+
+        <Button
+            android:id="@+id/start_onyx"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Take Picture"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_gravity="center"
+            tools:text="Take Picture" />
 
 
     </LinearLayout>
